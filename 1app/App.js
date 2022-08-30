@@ -1,38 +1,27 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from "./source/screens/home"
+import DetailsScreen from  "./source/screens/details"
+import AboutScreen from "./source/screens/about"
+import DataScreen from "./source/screens/data"
+import SettingsScreen from "./source/screens/settings"
 
-// You can import from local files
-import AssetExample from './components/AssetExample';
+const Stack = createNativeStackNavigator();
 
-// or any pure javascript modules available in npm
-import { Card } from 'react-native-paper';
-
-export default function App() {
+function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.paragraph}>
-        Change code in the editor and watch it change on your phone! Save to get a shareable url.
-      </Text>
-      <Card>
-        <AssetExample />
-      </Card>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="About" component={AboutScreen} />
+          <Stack.Screen name="Data" component={DataScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1',
-    padding: 8,
-  },
-  paragraph: {
-    margin: 24,
-    fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+export default App;

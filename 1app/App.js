@@ -20,7 +20,7 @@ function App() {
         <Stack.Screen name="About" component={AboutScreen} />
         <Stack.Screen name="Data" component={DataScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
-        <Stack.Screen name="Prrofile" component={ProfileScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

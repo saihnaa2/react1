@@ -1,13 +1,11 @@
-import { View, Text } from 'react-native'
-import React from 'react'
 import React from 'react';
 import { NativeBaseProvider, Box, Text, Heading, VStack, FormControl, Input, Link, Button, Icon, HStack, Center, Pressable } from 'native-base';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
-function Example() {
+export default function Example() {
   const [selected, setSelected] = React.useState(1);
   return <NativeBaseProvider>
-    <Center flex={1}></Center>
+    <Center flex={1} px="3"></Center>
       <Box flex={1} bg="white" safeAreaTop width="100%" maxW="300px" alignSelf="center">
         <Center flex={1}></Center>
         <HStack bg="indigo.600" alignItems="center" safeAreaBottom shadow={6}>

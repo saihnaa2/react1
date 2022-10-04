@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { StyleSheet, View, Button, TextInput,  FlatList} from "react-native";
-import goalItem from "./components/GoalItem";
+import GoalItem from "./components/GoalItem";
+import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  const [enteredGoalText, setenteredText] =useState('')
+  
   const [courseGoals, setCourseGoals] = useState([]);
-
-  function GoalInputHandler(enteredText) {
-    setenteredText(enteredText);
-  }
 
   function addGoalInputHandler() {
     setCourseGoals(currentCourseGoals => [...currentCourseGoals, 
@@ -17,17 +14,10 @@ export default function App() {
   }
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textinput}
-          placeholder="chinii zorilgo"
-          onChangeText={GoalInputHandler}
-        ></TextInput>
-        <Button title="zorilgo nemeh" onPress={addGoalInputHandler}></Button>
-      </View>
+      <GoalInput onAddGoal={addGoalInputHandler}/>
       <View style={styles.goalsContainer}>
       <FlatList data={courseGoals} renderItem={itemData=>{
-        return <goalItem text={itemData.item.text}/>;
+        return <GoalItem text={itemData.item.text}/>;
       }}
       keyExtractor={(item, index) =>{
         return item.id

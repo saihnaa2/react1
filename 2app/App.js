@@ -2,24 +2,31 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
-  const [] =useState('')
-  function GoalInputText(enteredText) {
-    console.log(enteredText);
+  const [enteredGoalText, setenteredText] =useState('')
+  const [courseGoals, setCourseGoals] = useState([]);
+
+  function GoalInputHandler(enteredText) {
+    setenteredText(enteredText);
   }
 
-  function addGoalInputText() {}
+  function addGoalInputHandler() {
+    setCourseGoals(currentCourseGoals => [...currentCourseGoals, enteredGoalText]);
+  }
   return (
     <View style={styles.appContainer}>
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textinput}
           placeholder="chinii zorilgo"
-          onChangeText={GoalInputText}
+          onChangeText={GoalInputHandler}
         ></TextInput>
-        <Button title="zorilgo nemeh"></Button>
+        <Button title="zorilgo nemeh" onPress={addGoalInputHandler}></Button>
       </View>
       <View style={styles.goalsContainer}>
-        <Text>zorilgiin jigsaalt</Text>
+        {courseGoals.map((goal)=> (
+          <View style={styles.goalItem} key={goal}>
+        <Text>{goal}</Text>
+        </View>))}
       </View>
     </View>
   );
@@ -50,4 +57,14 @@ const styles = StyleSheet.create({
   goalsContainer: {
     flex: 4,
   },
+  goalItem:{
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5e0acc',
+    color: 'white',
+
+
+    
+  }
 });

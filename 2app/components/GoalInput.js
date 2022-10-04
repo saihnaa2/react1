@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 function GoalInput(props) {
-    const [enteredGoalText, setenteredText] =useState('')
+    const [enteredGoalText, setenteredGoalText ] =useState('')
 
   function GoalInputHandler(enteredText) {
-    setenteredText(enteredText);
+    enteredGoalText(enteredText);
+  }
+
+  function addGoalHandler(){
+    props.onAddGoal(enteredGoalText);
+    setenteredGoalText('');
   }
 
   return (
@@ -13,8 +18,9 @@ function GoalInput(props) {
         style={styles.textinput}
         placeholder="chinii zorilgo"
         onChangeText={GoalInputHandler}
+        value={enteredGoalText}
       ></TextInput>
-      <Button title="zorilgo nemeh" onPress={props.onAddGoal}></Button>
+      <Button title="zorilgo nemeh" onPress={addGoalHandler}></Button>
     </View>
   );
 }

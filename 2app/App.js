@@ -1,30 +1,31 @@
 import { useState } from "react";
-import { StyleSheet, View, Button, TextInput,  FlatList} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import GoalItem from "./components/GoalItem";
 import GoalInput from "./components/GoalInput";
 
 export default function App() {
-  
   const [courseGoals, setCourseGoals] = useState([]);
 
-  function addGoalInputHandler() {
-    setCourseGoals(currentCourseGoals => [...currentCourseGoals, 
-      {text: enteredGoalText, id: Math.random().toString()},
+  function addGoalHandler(enteredGoalText) {
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
   return (
     <View style={styles.appContainer}>
-      <GoalInput onAddGoal={addGoalInputHandler}/>
+      <GoalInput onAddGoal={addGoalHandler} />
       <View style={styles.goalsContainer}>
-      <FlatList data={courseGoals} renderItem={itemData=>{
-        return <GoalItem text={itemData.item.text}/>;
-      }}
-      keyExtractor={(item, index) =>{
-        return item.id
-      }
-      }
-      alwaysBounceVertical={false}>
-      </FlatList>
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return <GoalItem text={itemData.item.text} />;
+          }}
+          keyExtractor={(item, index) => {
+            return item.id;
+          }}
+          alwaysBounceVertical={false}
+        ></FlatList>
       </View>
     </View>
   );
@@ -55,14 +56,14 @@ const styles = StyleSheet.create({
   goalsContainer: {
     flex: 4,
   },
-  goalItem:{
+  goalItem: {
     margin: 8,
     padding: 8,
     borderRadius: 6,
-    backgroundColor: '#5e0acc',
-    color: 'white',  
+    backgroundColor: "#5e0acc",
+    color: "white",
   },
-  goalText:{
-    color: 'white',
+  goalText: {
+    color: "white",
   },
 });
